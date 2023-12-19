@@ -2,7 +2,7 @@
 // using System.Collections.Generic;
 // using System.Linq;
 // using Microsoft.Unity.VisualStudio.Editor;
-using Unity.VisualScripting;
+// using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +40,9 @@ public class ChangeWall : MonoBehaviour
                 buttonImages[i].color = DeselectedColor;
             }
         }
+        foreach (GameObject obj in AlternateWalls) {
+            obj.SetActive(false);
+        }
     }
     private void UpdateColors() {
         ColorButtons[0].sprite = FirstTexture[ActiveWall];
@@ -61,11 +64,13 @@ public class ChangeWall : MonoBehaviour
                 Walls[ActiveWall].SetActive(true);
                 AlternateWalls[ActiveWall].SetActive(false);
                 ColorBar(true);
+                ActiveColor = 0;
             break;
             case 1:
                 Walls[ActiveWall].SetActive(false);
                 AlternateWalls[ActiveWall].SetActive(true);
                 ColorBar(false);
+                ActiveColor = 1;
             break;
             default: break;
         }
